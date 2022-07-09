@@ -1,12 +1,13 @@
 from pathlib import PurePosixPath
+from posixpath import split
 from typing import Any, Dict
 
+import datasets
 import fsspec
-
+import pandas as pd
+from datasets import Dataset, DatasetDict, load_dataset, load_from_disk
 from kedro.io import AbstractDataSet
 from kedro.io.core import get_filepath_str, get_protocol_and_path
-
-from datasets import Dataset, DatasetDict, load_dataset, load_from_disk
 
 
 class HuggingfaceDataSet(AbstractDataSet):
@@ -37,24 +38,39 @@ class HuggingfaceDataSet(AbstractDataSet):
         Returns:
             Data from  file
         """
-        pass
+        save_path = get_filepath_str(self._filepath, self._protocol)
+
+        if self._subtype is None:
+            split = "all"
+            save_path_formatted = save_path.format(split=split)
+            dataset = load_from_disk(save_path_formatted)
+
+        if self._subtype is not None:
+            datafiles = {split: save_path.format(split=split) for split in self._splits}
+            dataset = load_dataset(self._subtype, data_files=datafiles)
+
+        return dataset
 
     def _save(self, dataset: DatasetDict) -> None:
         """Saves data to the specified filepath."""
 
         save_path = get_filepath_str(self._filepath, self._protocol)
 
+        if self._subtype is None:
+            split = "all"
+            save_path_formatted = save_path.format(split=split)
+            dataset.save_to_disk(save_path_formatted)
+
         # assume that we have already loaded the dataset called "dataset"
-        for split, data in dataset.items():
+        if self._subtype is not None:
+            for split, data in dataset.items():
+                save_path_formatted = save_path.format(split=split)
 
-            if self._subtype is None:
-                data.save_to_disk(save_path)
+                if self._subtype == "csv":
+                    data.to_csv(save_path_formatted, index=None)
 
-            if self._subtype == "csv":
-                data.to_csv(save_path, index=None)
-
-            if self._subtype == "json":
-                data.to_json(save_path)
+                if self._subtype == "json":
+                    data.to_json(save_path_formatted)
 
     def _describe(self) -> Dict[str, Any]:
         """Returns a dict that describes the attributes of the dataset."""
