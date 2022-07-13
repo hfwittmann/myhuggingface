@@ -1,0 +1,3 @@
+task: ner # Should be one of "ner", "pos" or "chunk"
+model_checkpoint: distilbert-base-uncased
+batch_size: 16
