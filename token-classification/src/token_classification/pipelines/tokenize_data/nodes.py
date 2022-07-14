@@ -44,11 +44,11 @@ def tokenize_and_align_labels(examples):
 
 def tokenize(dataset, dataset_csv, dataset_json):
 
-    taal_dataset = dataset.map(tokenize_and_align_labels, batched=True)
-    taal_dataset_json = dataset_json.map(tokenize_and_align_labels, batched=True)
+    # taal_dataset = dataset.map(tokenize_and_align_labels, batched=True) # works
+    taal_dataset_json = dataset_json.map(tokenize_and_align_labels, batched=True)  # works
 
     ## start : das hier gibt den fail !!!
     # taal_dataset_csv = dataset_csv.map(tokenize_and_align_labels, batched=True)
     ## end: das hier gibt den fail !!!
 
-    pass
+    return taal_dataset_json

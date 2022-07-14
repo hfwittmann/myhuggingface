@@ -4,6 +4,7 @@ from typing import Dict
 from kedro.pipeline import Pipeline, pipeline
 from .pipelines import get_data
 from .pipelines import tokenize_data
+from .pipelines import model
 
 
 def register_pipelines() -> Dict[str, Pipeline]:
@@ -14,5 +15,6 @@ def register_pipelines() -> Dict[str, Pipeline]:
     """
     gd = get_data.create_pipeline()
     td = tokenize_data.create_pipeline()
+    mo = model.create_pipeline()
 
-    return {"gd": gd, "td": td, "__default__": pipeline([gd + td])}
+    return {"gd": gd, "td": td, "mo": mo, "__default__": pipeline([gd + td])}

@@ -13,7 +13,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 tokenize,
                 inputs=["dataset", "dataset_csv", "dataset_json"],
-                outputs=None,
+                outputs="dataset_tokenized_json",
                 name="tokenize",
                 tags=["token"],
             )

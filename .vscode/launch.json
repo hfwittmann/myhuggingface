@@ -37,7 +37,7 @@
             "args": [
                 "run",
                 "--pipeline",
-                "td"
+                "mo"
             ]
         },
         {
