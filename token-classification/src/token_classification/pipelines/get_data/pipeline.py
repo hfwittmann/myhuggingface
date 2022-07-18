@@ -13,7 +13,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 get_data_from_web,
                 inputs=None,
-                outputs=["dataset", "dataset_csv", "dataset_json"],
+                outputs= "dataset_json", # ["dataset", "dataset_csv", "dataset_json"],
                 name="get_data_from_web",
                 tags=["data"],
             )
