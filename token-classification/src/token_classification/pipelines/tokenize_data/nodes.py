@@ -6,19 +6,19 @@ generated using Kedro 0.18.2
 from transformers import AutoTokenizer
 import pandas as pd
 
-task = "ner"  # Should be one of "ner", "pos" or "chunk" # TODO : move to yaml
-model_checkpoint = "distilbert-base-uncased"  # TODO : move to yaml
-batch_size = 16  # TODO : move to yaml
-label_all_tokens = True  # TODO : move to yaml
+# task = "ner"  # Should be one of "ner", "pos" or "chunk" # TODO : move to yaml
+# model_checkpoint = "/shared/models/huggingface/transformers/distilbert-base-german-cased"  # TODO : move to yaml
+# batch_size = 16  # TODO : move to yaml
+# label_all_tokens = True  # TODO : move to yaml
 
-tokenizer = AutoTokenizer.from_pretrained(model_checkpoint)
+from ..helpers import L
 
 
 def tokenize_and_align_labels(examples):
-    tokenized_inputs = tokenizer(examples["tokens"], truncation=True, is_split_into_words=True)
+    tokenized_inputs = L.tokenizer(examples["tokens"], truncation=True, is_split_into_words=True)
 
     labels = []
-    for i, label in enumerate(examples[f"{task}_tags"]):
+    for i, label in enumerate(examples[f"{L.task}_tags"]):
         word_ids = tokenized_inputs.word_ids(batch_index=i)
         previous_word_idx = None
         label_ids = []
@@ -33,7 +33,7 @@ def tokenize_and_align_labels(examples):
             # For the other tokens in a word, we set the label to either the current label or -100, depending on
             # the label_all_tokens flag.
             else:
-                label_ids.append(label[word_idx] if label_all_tokens else -100)
+                label_ids.append(label[word_idx] if L.label_all_tokens else -100)
             previous_word_idx = word_idx
 
         labels.append(label_ids)
@@ -42,7 +42,7 @@ def tokenize_and_align_labels(examples):
     return tokenized_inputs
 
 
-def tokenize(dataset, dataset_csv, dataset_json):
+def tokenize(dataset_json):
 
     # taal_dataset = dataset.map(tokenize_and_align_labels, batched=True) # works
     taal_dataset_json = dataset_json.map(tokenize_and_align_labels, batched=True)  # works
