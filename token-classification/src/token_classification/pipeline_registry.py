@@ -17,4 +17,4 @@ def register_pipelines() -> Dict[str, Pipeline]:
     td = tokenize_data.create_pipeline()
     mo = model.create_pipeline()
 
-    return {"gd": gd, "td": td, "mo": mo, "__default__": pipeline([gd + td])}
+    return {"gd": gd, "td": td, "mo": mo, "__default__": pipeline([gd + td + mo])}

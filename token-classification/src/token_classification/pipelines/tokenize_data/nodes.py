@@ -11,7 +11,7 @@ import pandas as pd
 # batch_size = 16  # TODO : move to yaml
 # label_all_tokens = True  # TODO : move to yaml
 
-from ..helpers import L
+from ...helpers import L
 
 
 def tokenize_and_align_labels(examples):

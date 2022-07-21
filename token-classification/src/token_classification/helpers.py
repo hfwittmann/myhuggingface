@@ -12,14 +12,16 @@ from transformers import (
 
 class LanguageModel:
     def __init__(self) -> None:
-        self.device = "cuda:1" if torch.cuda.is_available() else "cpu"  # TODO
+        self.device = "cuda:0" if torch.cuda.is_available() else "cpu"  # TODO
         # TODO Move : to params
         self.task = "ner"  # TODO Should be one of "ner", "pos" or "chunk" :TODO
         self.batch_size = 16  # TODO
         self.label_all_tokens = True  # TODO
-        self.metric = load_metric("/shared/models/huggingface/transformers/metrics/seqeval/seqeval.py")
+        self.metric = load_metric(
+            "/home/hfwittmann/Sync/mygrive/Colab Notebooks/myhuggingface/token-classification/src/token_classification/seqeval.py"
+        )
 
-        self.model_checkpoint = "/shared/models/huggingface/transformers/distilbert-base-german-cased"  # TODO
+        self.model_checkpoint = "distilbert-base-german-cased"  # TODO
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_checkpoint)  # TODO
 
         # label_list = datasets["train"].features[f"{task}_tags"].feature.names

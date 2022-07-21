@@ -12,7 +12,7 @@ from transformers import (
 )
 
 
-from ..helpers import L
+from ...helpers import L
 
 
 def __compute_metrics(p):
@@ -56,8 +56,8 @@ def setup(tokenized_datasets):
     data_collator = DataCollatorForTokenClassification(L.tokenizer)
 
     # use fraction for testing
-    train_dataset = Dataset.from_dict(tokenized_datasets["train"][:30])  # TODO
-    eval_dataset = Dataset.from_dict(tokenized_datasets["validation"][:30])  # TODO
+    train_dataset = Dataset.from_dict(tokenized_datasets["train"][0:])  # TODO
+    eval_dataset = Dataset.from_dict(tokenized_datasets["validation"][0:])  # TODO
 
     trainer = Trainer(
         L.model,
