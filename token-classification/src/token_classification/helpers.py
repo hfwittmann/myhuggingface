@@ -12,7 +12,7 @@ from transformers import (
 
 class LanguageModel:
     def __init__(self) -> None:
-        self.device = "cuda:0" if torch.cuda.is_available() else "cpu"  # TODO
+        # self.device = "cuda:0" if torch.cuda.is_available() else "cpu"  # TODO
         # TODO Move : to params
         self.task = "ner"  # TODO Should be one of "ner", "pos" or "chunk" :TODO
         self.batch_size = 16  # TODO
@@ -39,7 +39,7 @@ class LanguageModel:
 
         self.model = AutoModelForTokenClassification.from_pretrained(
             self.model_checkpoint, num_labels=len(self.label_list)
-        ).to(self.device)
+        )  # .to(self.device)
 
 
 L = LanguageModel()

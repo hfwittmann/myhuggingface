@@ -161,3 +161,6 @@ mlruns/
 distilbert-base-uncased-finetuned-ner/
 checkpoint*/
 *finetuned*/
+outputs/
+runs/
+cache_dir/

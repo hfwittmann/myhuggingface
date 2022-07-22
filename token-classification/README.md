@@ -33,6 +33,17 @@ You can run your Kedro project with:
 kedro run
 ```
 
+To disable wandb do :
+```
+export WANDB_DISABLED=True
+```
+
+To only use one GPU (and avoid conflicts with mlflow) do:
+```
+CUDA_VISIBLE_DEVICES=0
+```
+
+
 ## How to test your Kedro project
 
 Have a look at the file `src/tests/test_run.py` for instructions on how to write your tests. You can run your tests as follows:
