@@ -1,0 +1,1 @@
+docker cp thirsty_boyd:/label-studio/data/media/upload ./
