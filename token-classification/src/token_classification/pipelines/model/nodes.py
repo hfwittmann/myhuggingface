@@ -4,13 +4,11 @@ generated using Kedro 0.18.2
 """
 
 import numpy as np
+import torch
 from datasets import Dataset
-from transformers import (
-    DataCollatorForTokenClassification,
-    Trainer,
-    TrainingArguments,
-)
-
+from sadice import SelfAdjDiceLoss
+from torch import nn
+from transformers import DataCollatorForTokenClassification, Trainer, TrainingArguments
 
 from ...helpers import L
 
@@ -59,7 +57,20 @@ def setup(tokenized_datasets):
     train_dataset = Dataset.from_dict(tokenized_datasets["train"][:30])  # TODO
     eval_dataset = Dataset.from_dict(tokenized_datasets["validation"][:30])  # TODO
 
-    trainer = Trainer(
+    class CustomTrainer(Trainer):
+        def compute_loss(self, model, inputs, return_outputs=False):
+            labels = inputs.get("labels")
+            # forward pass
+            outputs = model(**inputs)
+            logits = outputs.get("logits")
+
+            criterion = SelfAdjDiceLoss(reduction="none", ignore_index=-100)
+
+            loss = criterion(logits.view(-1, self.model.config.num_labels), labels.view(-1))
+            loss = loss.mean()
+            return (loss, outputs) if return_outputs else loss
+
+    trainer = CustomTrainer(
         L.model,
         args,
         train_dataset=train_dataset,

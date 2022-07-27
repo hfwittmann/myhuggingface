@@ -38,7 +38,26 @@ def tokenize_and_align_labels(examples):
 
         labels.append(label_ids)
 
+    half_window_length = 12
+    # i = 0
+    import numpy as np
+
+    for i in range(len(labels)):
+
+        hits = np.array(range(len(labels[i])))[np.array(labels[i]) > 0]
+        labels_i_with_mask = [-100] * len(labels[i])
+        for h in hits:
+            start = h - half_window_length
+            stop = h + half_window_length
+            start = max(0, start)
+            stop = min(len(labels[i]), stop)
+
+            labels_i_with_mask[start:stop] = labels[i][start:stop]
+
+        labels[i] = labels_i_with_mask
+
     tokenized_inputs["labels"] = labels
+
     return tokenized_inputs
 
 
