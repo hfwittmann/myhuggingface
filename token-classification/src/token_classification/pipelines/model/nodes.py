@@ -3,10 +3,11 @@ This is a boilerplate pipeline 'model'
 generated using Kedro 0.18.2
 """
 
+import pandas as pd
 import numpy as np
 import torch
 from datasets import Dataset
-from sadice import SelfAdjDiceLoss
+from .mysadice import SelfAdjDiceLoss
 from torch import nn
 from transformers import DataCollatorForTokenClassification, Trainer, TrainingArguments
 
@@ -36,17 +37,17 @@ def __compute_metrics(p):
     }
 
 
-def setup(tokenized_datasets):
+def setup(tokenized_datasets, sample_train, sample_validation):
     model_name = L.model_checkpoint.rsplit("/", maxsplit=1)[-1]
 
     # TODO
     args = TrainingArguments(
         f"{model_name}-finetuned-{L.task}",
         evaluation_strategy="epoch",  # TODO
-        learning_rate=2e-5,  # TODO
+        learning_rate=1e-5,  # TODO
         per_device_train_batch_size=L.batch_size,  # TODO
         per_device_eval_batch_size=L.batch_size,  # TODO
-        num_train_epochs=3,  # TODO
+        num_train_epochs=5,  # TODO
         weight_decay=0.01,  # TODO
         push_to_hub=False,  # TODO
     )
@@ -54,8 +55,16 @@ def setup(tokenized_datasets):
     data_collator = DataCollatorForTokenClassification(L.tokenizer)
 
     # use fraction for testing
-    train_dataset = Dataset.from_dict(tokenized_datasets["train"][:30])  # TODO
-    eval_dataset = Dataset.from_dict(tokenized_datasets["validation"][:30])  # TODO
+    import random
+
+    train_df = pd.DataFrame(tokenized_datasets["train"])
+    validation_df = pd.DataFrame(tokenized_datasets["validation"])
+
+    train_samples = train_df.sample(n=sample_train, random_state=0)
+    validation_samples = validation_df.sample(n=sample_validation, random_state=0)
+
+    train_dataset = Dataset.from_pandas(train_samples)
+    eval_dataset = Dataset.from_pandas(validation_samples)
 
     class CustomTrainer(Trainer):
         def compute_loss(self, model, inputs, return_outputs=False):

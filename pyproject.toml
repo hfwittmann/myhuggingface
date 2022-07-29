@@ -19,6 +19,7 @@ seqeval = "^1.2.2"
 tensorboard = "^2.9.1"
 torch = "^1.12.0"
 transformers = "^4.20.1"
+sadice = "^0.1.3"
 
 [tool.poetry.dev-dependencies]
 

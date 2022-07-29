@@ -5,6 +5,7 @@ generated using Kedro 0.18.2
 
 from transformers import AutoTokenizer
 import pandas as pd
+from functools import partial
 
 # task = "ner"  # Should be one of "ner", "pos" or "chunk" # TODO : move to yaml
 # model_checkpoint = "/shared/models/huggingface/transformers/distilbert-base-german-cased"  # TODO : move to yaml
@@ -14,7 +15,7 @@ import pandas as pd
 from ...helpers import L
 
 
-def tokenize_and_align_labels(examples):
+def tokenize_and_align_labels(examples, half_window_length):
     tokenized_inputs = L.tokenizer(examples["tokens"], truncation=True, is_split_into_words=True)
 
     labels = []
@@ -38,33 +39,37 @@ def tokenize_and_align_labels(examples):
 
         labels.append(label_ids)
 
-    half_window_length = 12
-    # i = 0
-    import numpy as np
+    assert examples["split"][0] in ["train", "validation", "test"]
 
-    for i in range(len(labels)):
+    if examples["split"][0] == "train":
+        half_window_length = 12
+        # i = 0
+        import numpy as np
 
-        hits = np.array(range(len(labels[i])))[np.array(labels[i]) > 0]
-        labels_i_with_mask = [-100] * len(labels[i])
-        for h in hits:
-            start = h - half_window_length
-            stop = h + half_window_length
-            start = max(0, start)
-            stop = min(len(labels[i]), stop)
+        for i in range(len(labels)):
 
-            labels_i_with_mask[start:stop] = labels[i][start:stop]
+            hits = np.array(range(len(labels[i])))[np.array(labels[i]) > 0]
+            labels_i_with_mask = [-100] * len(labels[i])
+            for h in hits:
+                start = h - half_window_length
+                stop = h + half_window_length
+                start = max(0, start)
+                stop = min(len(labels[i]), stop)
 
-        labels[i] = labels_i_with_mask
+                labels_i_with_mask[start:stop] = labels[i][start:stop]
+
+            labels[i] = labels_i_with_mask
 
     tokenized_inputs["labels"] = labels
 
     return tokenized_inputs
 
 
-def tokenize(dataset_json):
+def tokenize(dataset_json, half_window_length):
 
     # taal_dataset = dataset.map(tokenize_and_align_labels, batched=True) # works
-    taal_dataset_json = dataset_json.map(tokenize_and_align_labels, batched=True)  # works
+    tokenize_and_align_labels_p = partial(tokenize_and_align_labels, half_window_length=half_window_length)
+    taal_dataset_json = dataset_json.map(tokenize_and_align_labels_p, batched=True)  # works
 
     ## start : das hier gibt den fail !!!
     # taal_dataset_csv = dataset_csv.map(tokenize_and_align_labels, batched=True)

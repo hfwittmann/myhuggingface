@@ -13,7 +13,7 @@ def create_pipeline(**kwargs) -> Pipeline:
         [
             node(
                 setup,
-                inputs="dataset_tokenized_json",
+                inputs=["dataset_tokenized_json", "params:sample_train", "params:sample_validation"],
                 outputs=["model", "evaluation"],
                 name="setup",
                 tags=["model", "trainer", "evaluation"],
