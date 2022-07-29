@@ -1,3 +1,4 @@
+from __future__ import annotations
 from pathlib import PurePosixPath
 from posixpath import split
 from typing import Any, Dict
@@ -72,6 +73,32 @@ class HuggingfaceDataSet(AbstractDataSet):
                 if self._subtype == "json":
                     data.to_json(save_path_formatted)
 
+                if self._subtype == "labelstudio":
+                    pass
+
     def _describe(self) -> Dict[str, Any]:
         """Returns a dict that describes the attributes of the dataset."""
         return dict(filepath=self._filepath, protocol=self._protocol)
+
+
+if __name__ == "__main__":
+
+    for ix, d in enumerate(data):
+        
+        if ix > 3:
+            break
+
+        word_bounderies = np.cumsum([len(t) for t in d["tokens"]])
+        
+        
+            myannotations = {"annotations": {
+                "result": 
+                "data": {
+                    "text": " ".join(data[
+                        "tokens"
+                    ][
+                        0
+                    ])
+                }
+            }
+        
