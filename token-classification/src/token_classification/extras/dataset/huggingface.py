@@ -3,12 +3,14 @@ from pathlib import PurePosixPath
 from posixpath import split
 from typing import Any, Dict
 
+import json
 import datasets
 import fsspec
 import pandas as pd
 from datasets import Dataset, DatasetDict, load_dataset, load_from_disk
 from kedro.io import AbstractDataSet
 from kedro.io.core import get_filepath_str, get_protocol_and_path
+from .to_labelstudio_multidoc import convert_multiple_docs
 
 
 class HuggingfaceDataSet(AbstractDataSet):
@@ -74,31 +76,20 @@ class HuggingfaceDataSet(AbstractDataSet):
                     data.to_json(save_path_formatted)
 
                 if self._subtype == "labelstudio":
-                    pass
+                    d_converted = convert_multiple_docs(data)
+                    with open(
+                        save_path_formatted,
+                        "w",
+                    ) as f:
+                        f.write("[\n")
+                        for ix, d in enumerate(d_converted):
+                            json.dump(d, f)
+                            # dont use after last element
+                            if ix < len(d_converted) - 1:
+                                f.write("\n,")
+
+                        f.write("\n]")
 
     def _describe(self) -> Dict[str, Any]:
         """Returns a dict that describes the attributes of the dataset."""
         return dict(filepath=self._filepath, protocol=self._protocol)
-
-
-if __name__ == "__main__":
-
-    for ix, d in enumerate(data):
-        
-        if ix > 3:
-            break
-
-        word_bounderies = np.cumsum([len(t) for t in d["tokens"]])
-        
-        
-            myannotations = {"annotations": {
-                "result": 
-                "data": {
-                    "text": " ".join(data[
-                        "tokens"
-                    ][
-                        0
-                    ])
-                }
-            }
-        

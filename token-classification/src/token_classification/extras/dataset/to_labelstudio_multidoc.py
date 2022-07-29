@@ -1,11 +1,20 @@
 import json
-from to_labelstudio_onedoc import convert_one_document
+from datasets import Dataset
+
+from h11 import Data
+from .to_labelstudio_onedoc import convert_one_document
+from tqdm import tqdm
+from datasets import dataset_dict
 
 
 def convert_multiple_docs(md):
 
-    limit = 100000
-    return [convert_one_document(d) for ix, d in enumerate(md) if ix < limit]
+    limit = min(2000, len(md))
+
+    md = md[:limit]
+    md = Dataset.from_dict(md)
+
+    return [convert_one_document(d) for ix, d in tqdm(enumerate(md), total=limit)]
 
 
 if __name__ == "__main__":

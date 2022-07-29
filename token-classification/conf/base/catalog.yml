@@ -24,6 +24,13 @@ dataset_json:
   splits: [train, test, validation]
   layer: 01_raw
 
+dataset_labelstudio:
+  type: token_classification.extras.dataset.huggingface.HuggingfaceDataSet
+  subtype: labelstudio
+  filepath: data/01_raw/dataset_labelstudio_{split}.json
+  splits: [train, test, validation]
+  layer: 01_raw
+
 dataset_tokenized_json:
   type: token_classification.extras.dataset.huggingface.HuggingfaceDataSet
   subtype: json
