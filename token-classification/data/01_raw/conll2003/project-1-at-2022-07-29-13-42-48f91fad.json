@@ -1,0 +1,38 @@
+[
+    {
+        "annotations": [
+            {
+                "result": [
+                    {
+                        "value": {
+                            "start": 9,
+                            "end": 14,
+                            "labels": [
+                                "ORG"
+                            ]
+                        },
+                        "from_name": "label",
+                        "to_name": "text",
+                        "type": "labels"
+                    },
+                    {
+                        "value": {
+                            "start": 30,
+                            "end": 35,
+                            "labels": [
+                                "ORG"
+                            ]
+                        },
+                        "from_name": "label",
+                        "to_name": "text",
+                        "type": "labels"
+                    }
+                ]
+            }
+        ],
+        "data": {
+            "text": "SOCCER - JAPAN GET LUCKY WIN, CHINA IN SURPRISE DEFEAT SOCCER - JAPAN GET LUCKY WIN, CHINA IN SURPRISE DEFEAT"
+        },
+        "meta": {}
+    }
+]

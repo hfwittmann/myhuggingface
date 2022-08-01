@@ -9,6 +9,8 @@ from transformers import (
     TrainingArguments,
 )
 
+import yaml
+
 
 class LanguageModel:
     def __init__(self) -> None:
@@ -21,21 +23,11 @@ class LanguageModel:
             "/home/hfwittmann/Sync/mygrive/Colab Notebooks/myhuggingface/token-classification/src/token_classification/seqeval.py"
         )
 
-        self.model_checkpoint = "distilbert-base-german-cased"  # TODO
+        self.model_checkpoint = "t5-small"  # google/electra-small-discriminator # "deepset/gelectra-large"  # "deepset/gelectra-base"  # "distilbert-base-german-cased"  # TODO
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_checkpoint)  # TODO
 
         # label_list = datasets["train"].features[f"{task}_tags"].feature.names
-        self.label_list = [
-            "O",
-            "B-PER",
-            "I-PER",
-            "B-ORG",
-            "I-ORG",
-            "B-LOC",
-            "I-LOC",
-            "B-MISC",
-            "I-MISC",
-        ]
+        self.label_list = ["O", "B-DateOfBirth", "I-DateOfBirth", "U-DateOfBirth"]
 
         self.model = AutoModelForTokenClassification.from_pretrained(
             self.model_checkpoint, num_labels=len(self.label_list)

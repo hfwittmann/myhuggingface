@@ -1,0 +1,493 @@
+[
+  {
+    "text": "/data/upload/1/7fc9e917-Henri_Becquerel.csv",
+    "id": 16,
+    "label": [
+      {
+        "start": 37,
+        "end": 54,
+        "labels": [
+          "DateOfBirth"
+        ]
+      },
+      {
+        "start": 67,
+        "end": 82,
+        "labels": [
+          "DateOfDeath"
+        ]
+      },
+      {
+        "start": 0,
+        "end": 8,
+        "labels": [
+          "wikipedia"
+        ]
+      }
+    ],
+    "annotator": 1,
+    "annotation_id": 3471,
+    "created_at": "2022-07-30T20:32:25.917079Z",
+    "updated_at": "2022-07-31T12:19:30.718618Z",
+    "lead_time": 25.886000000000003
+  },
+  {
+    "text": "/data/upload/1/335d7cfa-Hans_Bethe.csv",
+    "id": 15,
+    "label": [
+      {
+        "start": 33,
+        "end": 45,
+        "labels": [
+          "DateOfBirth"
+        ]
+      },
+      {
+        "start": 62,
+        "end": 74,
+        "labels": [
+          "DateOfDeath"
+        ]
+      },
+      {
+        "start": 0,
+        "end": 8,
+        "labels": [
+          "wikipedia"
+        ]
+      }
+    ],
+    "annotator": 1,
+    "annotation_id": 3470,
+    "created_at": "2022-07-30T20:32:04.984461Z",
+    "updated_at": "2022-07-31T12:19:22.667277Z",
+    "lead_time": 26.954
+  },
+  {
+    "text": "/data/upload/1/bfa7bb7a-Hannes_Alfven.csv",
+    "id": 14,
+    "label": [
+      {
+        "start": 101,
+        "end": 113,
+        "labels": [
+          "DateOfBirth"
+        ]
+      },
+      {
+        "start": 131,
+        "end": 144,
+        "labels": [
+          "DateOfDeath"
+        ]
+      },
+      {
+        "start": 0,
+        "end": 8,
+        "labels": [
+          "wikipedia"
+        ]
+      }
+    ],
+    "annotator": 1,
+    "annotation_id": 3469,
+    "created_at": "2022-07-30T20:31:10.971200Z",
+    "updated_at": "2022-07-31T12:19:15.268492Z",
+    "lead_time": 27.044
+  },
+  {
+    "text": "/data/upload/1/dff7873c-Gerd_Binnig.csv",
+    "id": 13,
+    "label": [
+      {
+        "start": 29,
+        "end": 42,
+        "labels": [
+          "DateOfDeath"
+        ]
+      },
+      {
+        "start": 0,
+        "end": 8,
+        "labels": [
+          "wikipedia"
+        ]
+      }
+    ],
+    "annotator": 1,
+    "annotation_id": 3468,
+    "created_at": "2022-07-30T20:30:48.341397Z",
+    "updated_at": "2022-07-31T12:19:06.867944Z",
+    "lead_time": 27.942
+  },
+  {
+    "text": "/data/upload/1/ff3298c9-Georg_Bednorz.csv",
+    "id": 12,
+    "label": [
+      {
+        "start": 35,
+        "end": 47,
+        "labels": [
+          "DateOfBirth"
+        ]
+      },
+      {
+        "start": 0,
+        "end": 8,
+        "labels": [
+          "wikipedia"
+        ]
+      }
+    ],
+    "annotator": 1,
+    "annotation_id": 3467,
+    "created_at": "2022-07-30T20:30:25.451985Z",
+    "updated_at": "2022-07-31T12:18:57.689840Z",
+    "lead_time": 26.201
+  },
+  {
+    "text": "/data/upload/1/6a776f68-Ferdinand_Braun.csv",
+    "id": 11,
+    "label": [
+      {
+        "start": 34,
+        "end": 46,
+        "labels": [
+          "DateOfBirth"
+        ]
+      },
+      {
+        "start": 59,
+        "end": 73,
+        "labels": [
+          "DateOfDeath"
+        ]
+      },
+      {
+        "start": 0,
+        "end": 8,
+        "labels": [
+          "wikipedia"
+        ]
+      }
+    ],
+    "annotator": 1,
+    "annotation_id": 3466,
+    "created_at": "2022-07-30T20:30:05.442377Z",
+    "updated_at": "2022-07-31T12:18:48.289511Z",
+    "lead_time": 31.114
+  },
+  {
+    "text": "/data/upload/1/53e37d3a-Felix_Bloch.csv",
+    "id": 10,
+    "label": [
+      {
+        "start": 24,
+        "end": 40,
+        "labels": [
+          "DateOfBirth"
+        ]
+      },
+      {
+        "start": 54,
+        "end": 72,
+        "labels": [
+          "DateOfDeath"
+        ]
+      },
+      {
+        "start": 0,
+        "end": 8,
+        "labels": [
+          "wikipedia"
+        ]
+      }
+    ],
+    "annotator": 1,
+    "annotation_id": 3465,
+    "created_at": "2022-07-30T20:29:39.332128Z",
+    "updated_at": "2022-07-31T12:18:39.729564Z",
+    "lead_time": 27.259999999999998
+  },
+  {
+    "text": "/data/upload/1/00058cfb-Edward_Victor_Appleton.csv",
+    "id": 9,
+    "label": [
+      {
+        "start": 39,
+        "end": 56,
+        "labels": [
+          "DateOfBirth"
+        ]
+      },
+      {
+        "start": 72,
+        "end": 86,
+        "labels": [
+          "DateOfDeath"
+        ]
+      },
+      {
+        "start": 0,
+        "end": 8,
+        "labels": [
+          "wikipedia"
+        ]
+      }
+    ],
+    "annotator": 1,
+    "annotation_id": 3464,
+    "created_at": "2022-07-30T20:28:49.711142Z",
+    "updated_at": "2022-07-31T12:18:29.251180Z",
+    "lead_time": 27.17
+  },
+  {
+    "text": "/data/upload/1/ab5c1850-Charles_Glover_Barkla.csv",
+    "id": 8,
+    "label": [
+      {
+        "start": 35,
+        "end": 47,
+        "labels": [
+          "DateOfBirth"
+        ]
+      },
+      {
+        "start": 73,
+        "end": 89,
+        "labels": [
+          "DateOfDeath"
+        ]
+      },
+      {
+        "start": 0,
+        "end": 8,
+        "labels": [
+          "wikipedia"
+        ]
+      }
+    ],
+    "annotator": 1,
+    "annotation_id": 3463,
+    "created_at": "2022-07-30T20:28:26.965542Z",
+    "updated_at": "2022-07-31T12:18:20.701688Z",
+    "lead_time": 30.552
+  },
+  {
+    "text": "/data/upload/1/bfb6dcad-Carl_David_Anderson.csv",
+    "id": 7,
+    "label": [
+      {
+        "start": 43,
+        "end": 60,
+        "labels": [
+          "DateOfBirth"
+        ]
+      },
+      {
+        "start": 76,
+        "end": 91,
+        "labels": [
+          "DateOfDeath"
+        ]
+      },
+      {
+        "start": 0,
+        "end": 8,
+        "labels": [
+          "wikipedia"
+        ]
+      }
+    ],
+    "annotator": 1,
+    "annotation_id": 3462,
+    "created_at": "2022-07-30T20:28:02.158717Z",
+    "updated_at": "2022-07-31T12:18:11.387836Z",
+    "lead_time": 40.402
+  },
+  {
+    "text": "/data/upload/1/a3d7b3cd-Bertram_Brockhouse.csv",
+    "id": 6,
+    "label": [
+      {
+        "start": 55,
+        "end": 68,
+        "labels": [
+          "DateOfBirth"
+        ]
+      },
+      {
+        "start": 95,
+        "end": 111,
+        "labels": [
+          "DateOfDeath"
+        ]
+      },
+      {
+        "start": 0,
+        "end": 8,
+        "labels": [
+          "wikipedia"
+        ]
+      }
+    ],
+    "annotator": 1,
+    "annotation_id": 3461,
+    "created_at": "2022-07-30T20:27:28.307149Z",
+    "updated_at": "2022-07-31T12:18:01.134760Z",
+    "lead_time": 29.433
+  },
+  {
+    "text": "/data/upload/1/e1e46232-Barry_Barish.csv",
+    "id": 5,
+    "label": [
+      {
+        "start": 32,
+        "end": 47,
+        "labels": [
+          "DateOfBirth"
+        ]
+      },
+      {
+        "start": 0,
+        "end": 8,
+        "labels": [
+          "wikipedia"
+        ]
+      }
+    ],
+    "annotator": 1,
+    "annotation_id": 3460,
+    "created_at": "2022-07-30T20:27:04.876788Z",
+    "updated_at": "2022-07-31T12:17:50.798786Z",
+    "lead_time": 40.448
+  },
+  {
+    "text": "/data/upload/1/62b8d535-Arthur_Ashkin.csv",
+    "id": 4,
+    "label": [
+      {
+        "start": 27,
+        "end": 44,
+        "labels": [
+          "DateOfBirth"
+        ]
+      },
+      {
+        "start": 85,
+        "end": 103,
+        "labels": [
+          "DateOfDeath"
+        ]
+      },
+      {
+        "start": 0,
+        "end": 8,
+        "labels": [
+          "wikipedia"
+        ]
+      }
+    ],
+    "annotator": 1,
+    "annotation_id": 3459,
+    "created_at": "2022-07-30T20:26:33.148366Z",
+    "updated_at": "2022-07-31T12:17:39.241716Z",
+    "lead_time": 48.808
+  },
+  {
+    "text": "/data/upload/1/bd181cdb-Alexei_Alexejewitsch_Abrikossow.csv",
+    "id": 3,
+    "label": [
+      {
+        "start": 136,
+        "end": 149,
+        "labels": [
+          "DateOfBirth"
+        ]
+      },
+      {
+        "start": 176,
+        "end": 189,
+        "labels": [
+          "DateOfDeath"
+        ]
+      },
+      {
+        "start": 0,
+        "end": 8,
+        "labels": [
+          "wikipedia"
+        ]
+      }
+    ],
+    "annotator": 1,
+    "annotation_id": 3458,
+    "created_at": "2022-07-30T20:25:50.555612Z",
+    "updated_at": "2022-07-31T12:17:29.350613Z",
+    "lead_time": 49.771
+  },
+  {
+    "text": "/data/upload/1/56be7482-Albert_Einstein.csv",
+    "id": 2,
+    "label": [
+      {
+        "start": 29,
+        "end": 42,
+        "labels": [
+          "DateOfBirth"
+        ]
+      },
+      {
+        "start": 77,
+        "end": 91,
+        "labels": [
+          "DateOfDeath"
+        ]
+      },
+      {
+        "start": 0,
+        "end": 8,
+        "labels": [
+          "wikipedia"
+        ]
+      }
+    ],
+    "annotator": 1,
+    "annotation_id": 3457,
+    "created_at": "2022-07-30T20:24:58.188559Z",
+    "updated_at": "2022-07-31T12:17:15.765021Z",
+    "lead_time": 40.981
+  },
+  {
+    "text": "/data/upload/1/f4f21d55-Aage_Niels_Bohr.csv",
+    "id": 1,
+    "label": [
+      {
+        "start": 28,
+        "end": 41,
+        "labels": [
+          "DateOfBirth"
+        ]
+      },
+      {
+        "start": 59,
+        "end": 76,
+        "labels": [
+          "DateOfDeath"
+        ]
+      },
+      {
+        "start": 0,
+        "end": 8,
+        "labels": [
+          "wikipedia"
+        ]
+      }
+    ],
+    "annotator": 1,
+    "annotation_id": 3456,
+    "created_at": "2022-07-30T20:24:34.787343Z",
+    "updated_at": "2022-07-31T12:16:49.891808Z",
+    "lead_time": 49.655
+  }
+]

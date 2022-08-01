@@ -12,10 +12,10 @@ from functools import partial
 # batch_size = 16  # TODO : move to yaml
 # label_all_tokens = True  # TODO : move to yaml
 
-from ...helpers import L
+# from ...helpers import L
 
 
-def tokenize_and_align_labels(examples, half_window_length):
+def tokenize_and_align_labels(examples, window_length_before, window_length_after):
     tokenized_inputs = L.tokenizer(examples["tokens"], truncation=True, is_split_into_words=True)
 
     labels = []
@@ -41,7 +41,7 @@ def tokenize_and_align_labels(examples, half_window_length):
 
     assert examples["split"][0] in ["train", "validation", "test"]
 
-    if examples["split"][0] == "train":
+    if examples["split"][0] in ["train", "validate"]:
         half_window_length = 12
         # i = 0
         import numpy as np
@@ -51,8 +51,8 @@ def tokenize_and_align_labels(examples, half_window_length):
             hits = np.array(range(len(labels[i])))[np.array(labels[i]) > 0]
             labels_i_with_mask = [-100] * len(labels[i])
             for h in hits:
-                start = h - half_window_length
-                stop = h + half_window_length
+                start = h - window_length_before
+                stop = h + window_length_after
                 start = max(0, start)
                 stop = min(len(labels[i]), stop)
 
@@ -65,10 +65,12 @@ def tokenize_and_align_labels(examples, half_window_length):
     return tokenized_inputs
 
 
-def tokenize(dataset_json, half_window_length):
+def tokenize(dataset_json, window_length_before, window_length_after):
 
     # taal_dataset = dataset.map(tokenize_and_align_labels, batched=True) # works
-    tokenize_and_align_labels_p = partial(tokenize_and_align_labels, half_window_length=half_window_length)
+    tokenize_and_align_labels_p = partial(
+        tokenize_and_align_labels, window_length_before=window_length_before, window_length_after=window_length_after
+    )
     taal_dataset_json = dataset_json.map(tokenize_and_align_labels_p, batched=True)  # works
 
     ## start : das hier gibt den fail !!!

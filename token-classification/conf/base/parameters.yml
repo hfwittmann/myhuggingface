@@ -1,7 +1,26 @@
 task: ner # Should be one of "ner", "pos" or "chunk"
-model_checkpoint: distilbert-base-uncased
+model_checkpoint: distilbert-base-german-cased # t5-small # google/electra-small-discriminator # deepset/gelectra-base # distilbert-base-uncased
 batch_size: 16
 
-half_window_length: 12
+window_length_before: 30
+window_length_after: 20
+
 sample_train: 600
 sample_validation: 300
+
+datasetname: ${datasetname}
+
+model:
+  evaluation_strategy: "epoch"
+  learning_rate: 1.0e-5
+  per_device_train_batch_size: 16
+  per_device_eval_batch_size: 16
+  num_train_epochs: 10
+  weight_decay: 0.01
+  push_to_hub: False
+
+label_list:
+  - O
+  - B-DateOfBirth
+  - I-DateOfBirth
+  - U-DateOfBirth

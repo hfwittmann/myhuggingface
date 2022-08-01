@@ -166,3 +166,4 @@ runs/
 cache_dir/
 wandb/
 model.pkl
+upload/

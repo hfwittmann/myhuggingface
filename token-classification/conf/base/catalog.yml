@@ -17,24 +17,41 @@
 #   splits: [train, test, validation]
 #   layer: 01_raw
 
+annotations_json:
+  type: json.JSONDataSet
+  filepath: data/00_annotations/project-1-at-2022-07-31-12-19-89ed4820.json
+  layer: 00_annotations
+
+annotations_and_texts_json:
+  type: json.JSONDataSet
+  filepath: data/00_annotations/manydoc.json
+  layer: 00_annotations
+
 dataset_json:
   type: token_classification.extras.dataset.huggingface.HuggingfaceDataSet
   subtype: json
-  filepath: data/01_raw/dataset_{split}.json
+  filepath: data/01_raw/${datasetname}/dataset_{split}.json
   splits: [train, test, validation]
   layer: 01_raw
+
+dataset_json_plus_split_information:
+  type: token_classification.extras.dataset.huggingface.HuggingfaceDataSet
+  subtype: json
+  filepath: data/02_intermediate/${datasetname}/dataset_{split}.json
+  splits: [train, test, validation]
+  layer: 02_intermediate
 
 dataset_labelstudio:
   type: token_classification.extras.dataset.huggingface.HuggingfaceDataSet
   subtype: labelstudio
-  filepath: data/01_raw/dataset_labelstudio_{split}.json
+  filepath: data/01_raw/${datasetname}/dataset_labelstudio_{split}.json
   splits: [train, test, validation]
   layer: 01_raw
 
 dataset_tokenized_json:
   type: token_classification.extras.dataset.huggingface.HuggingfaceDataSet
   subtype: json
-  filepath: data/02_intermediate/dataset_tokenized_{split}.json
+  filepath: data/02_intermediate/${datasetname}/dataset_tokenized_{split}.json
   splits: [train, test, validation]
   layer: 02_intermediate
 
@@ -42,7 +59,7 @@ model:
   type: kedro_mlflow.io.artifacts.MlflowArtifactDataSet
   data_set:
     type: pickle.PickleDataSet
-    filepath: data/06_models/model.pkl
+    filepath: data/06_models/${datasetname}/model.pkl
 # evaluation:
 #   type: kedro_mlflow.io.artifacts.MlflowArtifactDataSet
 #   data_set:
